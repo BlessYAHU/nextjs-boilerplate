@@ -76,9 +76,11 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
         includeRootFolder: false
         archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
-    - task: PublishBuildArtifacts@1
+    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: drop
 
 - stage: Deploy
   displayName: Deploy stage
@@ -87,17 +89,13 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy
-    environment: $(environmentName)
+    environment: $(environmentName)g
     pool:
       vmImage: $(vmImageName)
     strategy:
       runOnce:
         deploy:
           steps:
-          - task: DownloadBuildArtifacts@0
-            inputs:
-              artifactName: 'drop'
-
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: nextjs-deployment-example'
             inputs:
