@@ -85,7 +85,6 @@ stages:
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
-  condition: and(succeeded(), eq(variables.isMain, true))
   jobs:
   - deployment: Deploy
     displayName: Deploy
