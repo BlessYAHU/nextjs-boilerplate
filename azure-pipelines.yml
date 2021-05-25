@@ -11,10 +11,10 @@ variables:
   azureSubscription: '6001685e-2c0d-4d57-b07f-e198dfce3799'
 
   # Web app name
-  webAppName: 'App-nextjs-boilerplate'
+  webAppName: 'arm-test-deploy'
 
   # Environment name
-  environmentName: 'App-nextjs-boilerplate'
+  environmentName: 'arm-test-deploy'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -23,7 +23,7 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
   sourceSlot: 'staging'
-  resourceGroup: 'nextjs-boilerplate'
+  resourceGroup: 'arm-test-deploy'
 
 stages:
 - stage: Build
@@ -89,7 +89,7 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy
-    environment: $(environmentName)g
+    environment: $(environmentName)
     pool:
       vmImage: $(vmImageName)
     strategy:
