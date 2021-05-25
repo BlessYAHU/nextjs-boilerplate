@@ -11,10 +11,10 @@ variables:
   azureSubscription: '6001685e-2c0d-4d57-b07f-e198dfce3799'
 
   # Web app name
-  webAppName: 'arm-test-deploy'
+  webAppName: 'App-node-linux'
 
   # Environment name
-  environmentName: 'arm-test-deploy'
+  environmentName: 'App-node-linux'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
