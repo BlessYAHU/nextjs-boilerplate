@@ -11,10 +11,10 @@ variables:
   azureSubscription: '6001685e-2c0d-4d57-b07f-e198dfce3799'
 
   # Web app name
-  webAppName: 'app-nextjs-boilerplate-linux'
+  webAppName: 'app-nextjs-boilerplate-linux-arm'
 
   # Environment name
-  environmentName: 'app-nextjs-boilerplate-linux'
+  environmentName: 'app-nextjs-boilerplate-linux-arm'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -23,7 +23,7 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
   sourceSlot: 'staging'
-  resourceGroup: 'nextjs-boilerplate'
+  resourceGroup: 'nextjs-boilerplate-arm'
 
 stages:
 - stage: Build
