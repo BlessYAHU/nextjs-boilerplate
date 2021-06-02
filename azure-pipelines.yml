@@ -23,7 +23,7 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
   sourceSlot: 'staging'
-  resourceGroup: 'arm-test-deployment'
+  resourceGroup: 'nextjs-boilerplate'
 
 stages:
 - stage: Build
