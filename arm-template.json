@@ -9,7 +9,7 @@
     },
     "skuName": {
       "type": "string",
-      "defaultValue": "S1",
+      "defaultValue": "P1V2",
       "allowedValues": [
         "D1",
         "F1",
@@ -39,7 +39,7 @@
     },
     "skuTier": {
       "type": "string",
-      "defaultValue": "Standard",
+      "defaultValue": "PremiumV2",
       "metadata": {
         "description": "Sku-tier. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
       }
@@ -58,7 +58,7 @@
       "name": "[variables('webSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "kind": "linux",
+      "kind": "app,linux",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms/', variables('hostingPlanName'))]",
         "[resourceId('microsoft.insights/components/', variables('appInsightsName'))]"
@@ -67,6 +67,8 @@
         "name": "[variables('webSiteName')]",
         "serverFarmId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]",
         "clientAffinityEnabled": false,
+        "http20Enabled": true,
+        "reserved": true,
         "siteConfig": {
           "linuxFxVersion": "[variables('linuxFxVersion')]",
           "alwaysOn": false,
@@ -121,12 +123,16 @@
       "apiVersion": "2018-02-01",
       "name": "[concat(variables('webSiteName'), '/staging')]",
       "location": "[resourceGroup().location]",
-      "kind": "app",
+      "kind": "app,linux",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
       ],
       "properties": {
         "enabled": true,
+        "reserved": true,
+        "http20Enabled": true,
+        "clientAffinityEnabled": false,
+        "linuxFxVersion": "[variables('linuxFxVersion')]",
         "serverFarmId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]"
       }
     }
