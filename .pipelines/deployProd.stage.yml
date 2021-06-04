@@ -16,6 +16,8 @@ stages:
 - stage: deployProdSlotProd${{ variables.environmentTypeProd }}
   displayName: ${{ variables.environmentTypeProd }} - Live
   dependsOn: deployProdSlotStaging${{ variables.environmentTypeProd }}
+  variables:
+  - template: config.variables.yml
   jobs:
   - template: prodSlot.job.yml
     parameters:
