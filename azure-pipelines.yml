@@ -1,7 +1,8 @@
 trigger:
   - main
 
-#variables:
+variables:
+  appName: appNameValue
 
 stages:
   - template: .pipelines/build.stage.yml
@@ -9,7 +10,7 @@ stages:
     parameters:
       azureSubscription: 'azSubValue'
       type: Dev
-      appName: appNameValue
+      appName: ${{ variables.appName }}
       resourceGroupName: resource-group-name
 
 #  - stage: devDeployStage
