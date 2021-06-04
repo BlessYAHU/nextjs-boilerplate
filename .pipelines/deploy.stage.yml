@@ -12,8 +12,11 @@ parameters:
   - name: resourceGroupName
     type: string
 
+variables:
+  stageName: deployStage${{ parameters.environmentType }}
+
 stages:
-- stage: devDeployStage
+- stage: $(stageName)
   displayName: ${{ parameters.environmentType }}
   dependsOn: buildAppStage
   jobs:
