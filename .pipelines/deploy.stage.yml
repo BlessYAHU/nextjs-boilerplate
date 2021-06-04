@@ -33,6 +33,7 @@ stages:
       parameters:
         type: Staging
         urls: urlsValue-staging
+        appName: ${{ parameters.appName }}
 
     - job: productionSlotJob
       displayName: Production Slot
@@ -46,3 +47,4 @@ stages:
       parameters:
         type: Prod
         urls: urlsValue-prod
+        appName: ${{ parameters.appName }}

@@ -6,6 +6,14 @@ parameters:
       - Prod
   - name: urls
     type: string
+  - name: appName
+    type: string
+
+variables:
+  urlBase: '.azurewebsites.net/system/health'
+  urlStaging: 'https://$(appName)-staging$(urlBase)'
+  urlProd: 'https://$(appNameValue)$(urlBase)'
+
 jobs:
   - job: smokeTest${{ parameters.type }}
     displayName: ${{ parameters.type }} Smoke Test
@@ -13,4 +21,6 @@ jobs:
       - script: |
           echo 'smokeTest ${{ parameters.type }}'
           echo urls-${{ parameters.urls }}
+          echo urlStaging-$(urlStaging)
+          echo urlProd-$(urlProd)
         displayName: SmokeTest
