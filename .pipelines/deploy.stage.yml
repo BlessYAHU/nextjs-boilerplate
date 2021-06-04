@@ -1,6 +1,6 @@
 parameters:
   - name: 'azureSubscription'
-    type: 'string'
+    type: string
   - name: 'type'
     type: string
     values:
@@ -8,6 +8,8 @@ parameters:
       - QA
       - Prod
   - name: 'appName'
+    type: string
+  - name: resourceGroupName
     type: string
 
 stages:
@@ -24,7 +26,7 @@ stages:
         - script: |
             echo 'webApp deploy staging'
             echo azureSubscription-${{ parameters.azureSubscription }}
-            echo azureSubscription-${{ parameters.appName }}
+            echo appName-${{ parameters.appName }}
           displayName: Deploy Staging
 
     - job: smokeTestStaging
@@ -39,6 +41,7 @@ stages:
       steps:
         - script: |
             echo 'swapSlots production'
+            echo resourceGroupName-${{ parameters.resourceGroupName }}
           displayName: SwapSlots Production
 
     - job: smokeTestProduction

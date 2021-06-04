@@ -10,6 +10,7 @@ stages:
       azureSubscription: 'azSubValue'
       type: Dev
       appName: appNameValue
+      resourceGroupName: resource-group-name
 
 #  - stage: devDeployStage
 #    displayName: Dev
