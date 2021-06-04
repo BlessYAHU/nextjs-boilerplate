@@ -21,6 +21,7 @@ stages:
           displayName: Deploy Staging
 
     - job: smokeTestStaging
+      steps:
         - script: |
             echo 'smokeTest staging'
           displayName: SmokeTest
@@ -33,6 +34,7 @@ stages:
           displayName: SwapSlots Production
 
     - job: Smoke Test
+      steps:
         - script: |
             echo 'smokeTest production'
           displayName: SmokeTest Production
