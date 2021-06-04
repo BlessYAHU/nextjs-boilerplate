@@ -6,6 +6,7 @@ parameters:
   - QA
   - Prod
 
+jobs:
 - deployment: ProdSlotJob
   displayName: Prod Slot
   dependsOn: StagingSlotJob
