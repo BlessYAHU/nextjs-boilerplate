@@ -5,11 +5,14 @@ parameters:
   - Dev
   - QA
   - Prod
+- name: dependsOn
+  type: string
+  default: ''
 
 jobs:
 - deployment: ProdSlotJob
   displayName: Prod Slot
-  dependsOn: StagingSlotJob
+  dependsOn: ${{ parameters.dependsOn }}
   pool:
     vmImage: 'ubuntu-latest'
   environment: ${{ parameters.environmentType }}

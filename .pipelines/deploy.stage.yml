@@ -24,3 +24,4 @@ stages:
     - template: prodSlot.job.yml
       parameters:
         environmentType: ${{ parameters.environmentType }}
+        dependsOn: StagingSlotJob
