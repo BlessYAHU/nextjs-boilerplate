@@ -8,6 +8,8 @@ parameters:
     type: string
   - name: appName
     type: string
+  - name: dependsOn
+    type: string
 
 #variables:
 #  urlBase: '.azurewebsites.net/system/health'
@@ -17,6 +19,7 @@ parameters:
 jobs:
   - job: smokeTest${{ parameters.type }}
     displayName: ${{ parameters.type }} Smoke Test
+    dependsOn: stagingSlotJob
     steps:
       - script: |
           echo 'smokeTest ${{ parameters.type }}'

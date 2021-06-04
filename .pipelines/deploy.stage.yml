@@ -28,11 +28,11 @@ stages:
           displayName: Deploy Staging
 
     - template: smokeTest.job.yml
-      dependsOn: stagingSlotJob
       parameters:
         type: Staging
         urls: urlsValue-staging
         appName: ${{ variables.appName }}
+        dependsOn: stagingSlotJob
 
     - job: productionSlotJob
       displayName: Production Slot
@@ -44,8 +44,8 @@ stages:
           displayName: SwapSlots Production
 
     - template: smokeTest.job.yml
-      dependsOn: productionSlotJob
       parameters:
         type: Prod
         urls: urlsValue-prod
         appName: ${{ variables.appName }}
+        dependsOn: productionSlotJob
