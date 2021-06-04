@@ -15,7 +15,7 @@ stages:
 - stage: deployStage${{ parameters.environmentType }}
   displayName: ${{ parameters.environmentType }}
   dependsOn: ${{ parameters.dependsOn }}
-  condition: and(succeeded(), eq('${{ parameters.disabled }}', false))
+  condition: and(succeeded(), not('${{ parameters.disabled }}'))
 
   variables:
     - template: config.variables.yml
