@@ -3,7 +3,7 @@ trigger:
 
 variables:
   - template: .pipelines/config.variables.yml
-  - devType: Dev
+    devType: Dev
 
 stages:
   - template: .pipelines/build.stage.yml

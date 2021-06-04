@@ -15,11 +15,11 @@ parameters:
     type: string
     default: ''
 
-#variables:
-#  stageName: deployStage${{ parameters.environmentType }}
+variables:
+  - stageName: deployStage${{ parameters.environmentType }}
 
 stages:
-- stage: deployStage${{ parameters.environmentType }}
+- stage: $(stageName)
   displayName: ${{ parameters.environmentType }}
   dependsOn: ${{ parameters.dependsOn }}
   jobs:
