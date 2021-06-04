@@ -30,6 +30,7 @@ stages:
           displayName: Deploy Staging
 
     - template: .pipelines/smokeTest.job.yml
+      parameters:
         urls: urlsValue
 
     - job: productionSlotJob
