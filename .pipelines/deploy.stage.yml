@@ -29,12 +29,8 @@ stages:
             echo appName-${{ parameters.appName }}
           displayName: Deploy Staging
 
-    - job: smokeTestStaging
-      displayName: Staging Smoke Test
-      steps:
-        - script: |
-            echo 'smokeTest staging'
-          displayName: SmokeTest
+    - template: .pipelines/smokeTest.job.yml
+        urls: urlsValue
 
     - job: productionSlotJob
       displayName: Production Slot
