@@ -7,7 +7,8 @@ stages:
       steps:
         - script: |
             echo 'buildStage'
-            echo ${{ in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}
+            echo ${{ notIn(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}
+            echo ${{ variables['isCI'] }}
           displayName: Build
         - script: |
             echo 'publishArtifact'
