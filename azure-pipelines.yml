@@ -25,7 +25,7 @@ stages:
     displayName: ${{ variables.environmentTypeProd }}
     dependsOn: deployStage${{ variables.environmentTypeQA }}
     jobs:
-    - template: stagingSlot.job.yml
+    - template: .pipelines/stagingSlot.job.yml
       parameters:
         environmentType: ${{ variables.environmentTypeProd }}
 
@@ -33,6 +33,6 @@ stages:
     displayName: ${{ variables.environmentTypeProd }}
     dependsOn: deployStage${{ variables.environmentTypeProd }}
     jobs:
-    - template: prodSlot.job.yml
+    - template: .pipelines/prodSlot.job.yml
       parameters:
         environmentType: ${{ variables.environmentTypeProd }}
