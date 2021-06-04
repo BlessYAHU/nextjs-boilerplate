@@ -32,6 +32,7 @@ stages:
                 echo 'webApp deploy staging'
                 echo azureSubscription-${{ variables.azureSubscription }}
                 echo appName-${{ variables.appName }}
+                echo disabled-${{ variables.disabled }}
             - template: smokeTest.job.yml
               parameters:
                 type: Staging
