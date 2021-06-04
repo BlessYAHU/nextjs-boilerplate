@@ -3,13 +3,14 @@ trigger:
 
 variables:
   - template: .pipelines/config.variables.yml
+  - devType: Dev
 
 stages:
   - template: .pipelines/build.stage.yml
   - template: .pipelines/deploy.stage.yml
     parameters:
       azureSubscription: 'azSubValue'
-      environmentType: Dev
+      environmentType: devType
       appName: ${{ variables.appName }}
       resourceGroupName: resource-group-name
   - template: .pipelines/deploy.stage.yml
@@ -18,6 +19,7 @@ stages:
       environmentType: QA
       appName: ${{ variables.appName }}
       resourceGroupName: resource-group-name
+      dependsOn: deployStage$(devType)
 
 #  - stage: devDeployStage
 #    displayName: Dev

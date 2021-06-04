@@ -11,6 +11,9 @@ parameters:
     type: string
   - name: resourceGroupName
     type: string
+  - name: dependsOn
+    type: string
+    default: ''
 
 #variables:
 #  stageName: deployStage${{ parameters.environmentType }}
@@ -18,7 +21,7 @@ parameters:
 stages:
 - stage: deployStage${{ parameters.environmentType }}
   displayName: ${{ parameters.environmentType }}
-  dependsOn: buildAppStage
+  dependsOn: ${{ parameters.dependsOn }}
   jobs:
     - job: stagingSlotJob
       displayName: Staging Slot
