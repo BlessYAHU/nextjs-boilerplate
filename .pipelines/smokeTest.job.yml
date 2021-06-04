@@ -9,10 +9,10 @@ parameters:
   - name: appName
     type: string
 
-variables:
+#variables:
 #  urlBase: '.azurewebsites.net/system/health'
-  urlStaging: 'https://$(appName)-staging.azurewebsites.net/system/health'
-  urlProd: 'https://$(appNameValue).azurewebsites.net/system/health'
+#  urlStaging: 'https://$(appName)-staging.azurewebsites.net/system/health'
+#  urlProd: 'https://$(appNameValue).azurewebsites.net/system/health'
 
 jobs:
   - job: smokeTest${{ parameters.type }}
@@ -21,6 +21,6 @@ jobs:
       - script: |
           echo 'smokeTest ${{ parameters.type }}'
           echo urls-${{ parameters.urls }}
-          echo urlStaging-$(urlStaging)
-          echo urlProd-$(urlProd)
+          echo "urlStaging-'https://$(appName)-staging.azurewebsites.net/system/health'"
+          echo "urlProd-'https://$(appNameValue).azurewebsites.net/system/health'"
         displayName: SmokeTest
