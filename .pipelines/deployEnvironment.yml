@@ -1,0 +1,16 @@
+- stage: devDeployStage
+  displayName: Dev
+  dependsOn: buildAppStage
+  jobs:
+    - job: productionSlotJob
+      displayName: 'Production Slot'
+      steps:
+        - script: |
+            echo 'download artifact'
+          displayName: 'download artifact'
+        - script: |
+            echo 'webApp deploy staging'
+          displayName: 'webApp deploy staging'
+        - script: |
+            echo 'smokeTest staging'
+          displayName: 'smokeTest staging'

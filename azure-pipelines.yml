@@ -4,68 +4,78 @@ trigger:
 #variables:
 
 stages:
-  - stage: buildAppStage
-    displayName: Build and Test
-    jobs:
-      - job: buildAppJob
-        displayName: Build
-        steps:
-          - script: |
-              echo 'buildAppStage'
-            displayName: 'buildAppStage'
+#  - stage: buildAppStage
+#    displayName: Build and Test
+#    jobs:
+#      - job: buildAppJob
+#        displayName: Build
+#        steps:
+#          - script: |
+#              echo 'buildAppStage'
+#            displayName: 'buildAppStage'
+#
+#      - job: testAppJob
+#        displayName: Unit Tests
+#        dependsOn: buildAppJob
+#        steps:
+#          - script: |
+#              echo 'buildAppStage'
+#            displayName: 'buildAppStage'
 
-  - stage: devDeployStage
-    displayName: Dev
-    dependsOn: buildAppStage
-    jobs:
-      - job: productionSlotJob
-        displayName: 'Production Slot'
-        steps:
-          - script: |
-              echo 'download artifact'
-            displayName: 'download artifact'
-          - script: |
-              echo 'webApp deploy staging'
-            displayName: 'webApp deploy staging'
-          - script: |
-              echo 'smokeTest staging'
-            displayName: 'smokeTest staging'
+    steps:
+      - template: .pipelines/deployEnvironment.yml
+#  - stage: devDeployStage
+#    displayName: Dev
+#    dependsOn: buildAppStage
+#    jobs:
+#      - job: productionSlotJob
+#        displayName: 'Production Slot'
+#        steps:
+#          - script: |
+#              echo 'download artifact'
+#            displayName: 'download artifact'
+#          - script: |
+#              echo 'webApp deploy staging'
+#            displayName: 'webApp deploy staging'
+#          - script: |
+#              echo 'smokeTest staging'
+#            displayName: 'smokeTest staging'
 
-      - job: SwapEast
-        displayName: 'Swap East Slot'
-        dependsOn: productionSlotJob
-        steps:
-          - script: |
-              echo 'swapSlots production'
-            displayName: 'swapSlots production'
-          - script: |
-              echo 'smokeTest production'
-            displayName: 'smokeTest production'
-
-  - stage: qaDeployStage
-    displayName: QA
-    dependsOn: devDeployStage
-    jobs:
-      - job: productionSlotJob
-        displayName: 'Production Slot'
-        steps:
-          - script: |
-              echo 'download artifact'
-            displayName: 'download artifact'
-          - script: |
-              echo 'webApp deploy staging'
-            displayName: 'webApp deploy staging'
-          - script: |
-              echo 'smokeTest staging'
-            displayName: 'smokeTest staging'
-
-      - job: SwapEast
-        displayName: 'Swap East Slot'
-        dependsOn: productionSlotJob
-        steps:
-          - script: |
-              echo 'swapSlots production'
-            displayName: 'swapSlots production'
-          - script: |
-              echo 'smokeTest production'
-            displayName: 'smokeTest production'
+#      - job: SwapEast
+#        displayName: 'Swap East Slot'
+#        dependsOn: productionSlotJob
+#        steps:
+#          - script: |
+#              echo 'swapSlots production'
+#            displayName: 'swapSlots production'
+#          - script: |
+#              echo 'smokeTest production'
+#            displayName: 'smokeTest production'
+#
+#  - stage: qaDeployStage
+#    displayName: QA
+#    dependsOn: devDeployStage
+#    jobs:
+#      - job: productionSlotJob
+#        displayName: 'Production Slot'
+#        steps:
+#          - script: |
+#              echo 'download artifact'
+#            displayName: 'download artifact'
+#          - script: |
+#              echo 'webApp deploy staging'
+#            displayName: 'webApp deploy staging'
+#          - script: |
+#              echo 'smokeTest staging'
+#            displayName: 'smokeTest staging'
+#
+#      - job: SwapEast
+#        displayName: 'Swap East Slot'
+#        dependsOn: productionSlotJob
+#        steps:
+#          - script: |
+#              echo 'swapSlots production'
+#            displayName: 'swapSlots production'
+#          - script: |
+#              echo 'smokeTest production'
+#            displayName: 'smokeTest production'
