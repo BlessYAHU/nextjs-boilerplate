@@ -1,21 +1,15 @@
 parameters:
-  - name: azureSubscription
-    type: string
   - name: environmentType
     type: string
     values:
       - Dev
       - QA
       - Prod
-  - name: appName
-    type: string
-  - name: resourceGroupName
-    type: string
   - name: dependsOn
     type: string
 
-#variables:
-#  - stageName: deployStage${{ parameters.environmentType }}
+variables:
+  - template: config.variables.yml
 
 stages:
 - stage: deployStage${{ parameters.environmentType }}
@@ -30,26 +24,26 @@ stages:
           displayName: Download Artifact
         - script: |
             echo 'webApp deploy staging'
-            echo azureSubscription-${{ parameters.azureSubscription }}
-            echo appName-${{ parameters.appName }}
+            echo azureSubscription-${{ variables.azureSubscription }}
+            echo appName-${{ variables.appName }}
           displayName: Deploy Staging
 
     - template: smokeTest.job.yml
       parameters:
         type: Staging
         urls: urlsValue-staging
-        appName: ${{ parameters.appName }}
+        appName: ${{ variables.appName }}
 
     - job: productionSlotJob
       displayName: Production Slot
       steps:
         - script: |
             echo 'swapSlots production'
-            echo resourceGroupName-${{ parameters.resourceGroupName }}
+            echo resourceGroupName-${{ variables.resourceGroupName }}
           displayName: SwapSlots Production
 
     - template: smokeTest.job.yml
       parameters:
         type: Prod
         urls: urlsValue-prod
-        appName: ${{ parameters.appName }}
+        appName: ${{ variables.appName }}
