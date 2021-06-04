@@ -1,0 +1,20 @@
+parameters:
+- name: dependsOn
+  type: string
+
+stages:
+- stage: deployProdSlotStaging${{ variables.environmentTypeProd }}
+  displayName: ${{ variables.environmentTypeProd }} - Staging
+  dependsOn: deployStage${{ variables.environmentTypeQA }}
+  jobs:
+  - template: stagingSlot.job.yml
+    parameters:
+      environmentType: ${{ variables.environmentTypeProd }}
+
+- stage: deployProdSlotProd${{ variables.environmentTypeProd }}
+  displayName: ${{ variables.environmentTypeProd }} - Live
+  dependsOn: deployProdSlotStaging${{ variables.environmentTypeProd }}
+  jobs:
+  - template: prodSlot.job.yml
+    parameters:
+      environmentType: ${{ variables.environmentTypeProd }}

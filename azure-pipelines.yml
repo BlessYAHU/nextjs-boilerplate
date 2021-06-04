@@ -21,18 +21,6 @@ stages:
       environmentType: ${{ variables.environmentTypeQa }}
       dependsOn: deployStage${{ variables.environmentTypeDev }}
 
-  - stage: deployProdSlotStaging${{ variables.environmentTypeProd }}
-    displayName: ${{ variables.environmentTypeProd }} - Staging
-    dependsOn: deployStage${{ variables.environmentTypeQA }}
-    jobs:
-    - template: .pipelines/stagingSlot.job.yml
-      parameters:
-        environmentType: ${{ variables.environmentTypeProd }}
-
-  - stage: deployProdSlotProd${{ variables.environmentTypeProd }}
-    displayName: ${{ variables.environmentTypeProd }} - Live
-    dependsOn: deployProdSlotStaging${{ variables.environmentTypeProd }}
-    jobs:
-    - template: .pipelines/prodSlot.job.yml
-      parameters:
-        environmentType: ${{ variables.environmentTypeProd }}
+  - template: .pipelines/deployProd.stage.yml
+    parameters:
+      dependsOn: deployStage${{ variables.environmentTypeQa }}
