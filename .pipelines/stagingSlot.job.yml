@@ -6,15 +6,14 @@ parameters:
   - QA
   - Prod
 
-variables:
-  - template: config.variables.yml
-
 jobs:
 - deployment: StagingSlotJob
   displayName: Staging Slot
   pool:
     vmImage: 'ubuntu-latest'
   environment: ${{ parameters.environmentType }}
+  variables:
+  - template: config.variables.yml
   strategy:
     runOnce:
       deploy:
