@@ -13,7 +13,6 @@ parameters:
     type: string
   - name: dependsOn
     type: string
-    default: ''
 
 #variables:
 #  - stageName: deployStage${{ parameters.environmentType }}
