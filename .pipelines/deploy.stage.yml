@@ -53,18 +53,18 @@ stages:
 #        appName: ${{ variables.appName }}
 #        dependsOn: stagingSlotJob
 
-    - job: ProdSlotJob
-      displayName: Production Slot
-      dependsOn: smokeTestStaging
-      steps:
-        - script: |
-            echo 'swapSlots production'
-            echo resourceGroupName-${{ variables.resourceGroupName }}
-          displayName: SwapSlots Production
-
-    - template: smokeTest.job.yml
-      parameters:
-        type: Prod
-        urls: urlsValue-prod
-        appName: ${{ variables.appName }}
-        dependsOn: prodSlotJob
+#    - job: ProdSlotJob
+#      displayName: Production Slot
+#      dependsOn: smokeTestStaging
+#      steps:
+#        - script: |
+#            echo 'swapSlots production'
+#            echo resourceGroupName-${{ variables.resourceGroupName }}
+#          displayName: SwapSlots Production
+#
+#    - template: smokeTest.job.yml
+#      parameters:
+#        type: Prod
+#        urls: urlsValue-prod
+#        appName: ${{ variables.appName }}
+#        dependsOn: prodSlotJob
