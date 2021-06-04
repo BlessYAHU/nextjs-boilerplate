@@ -2,7 +2,7 @@ trigger:
   - main
 
 variables:
-  appName: appNameValue
+  - template: .pipelines/config.variables.yml
 
 stages:
   - template: .pipelines/build.stage.yml
