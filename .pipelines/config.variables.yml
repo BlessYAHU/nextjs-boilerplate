@@ -1,3 +1,9 @@
 variables:
+  # project configs
   appName: appNameValue
   devType: Dev
+
+  # constant configs
+  environmentTypeDev: Dev
+  environmentTypeQa: QA
+  environmentTypeProd: Prod

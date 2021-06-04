@@ -10,7 +10,7 @@ stages:
   - template: .pipelines/deploy.stage.yml
     parameters:
       azureSubscription: 'azSubValue'
-      environmentType: ${{ variables.devType }}
+      environmentType: ${{ variables.environmentTypeDev }}
       appName: ${{ variables.appName }}
       resourceGroupName: resource-group-name
       dependsOn: buildStage
@@ -18,7 +18,15 @@ stages:
   - template: .pipelines/deploy.stage.yml
     parameters:
       azureSubscription: 'azSubValue'
-      environmentType: QA
+      environmentType: ${{ variables.environmentTypeQa }}
       appName: ${{ variables.appName }}
       resourceGroupName: resource-group-name
-      dependsOn: deployStage${{ variables.devType }}
+      dependsOn: deployStage${{ variables.environmentTypeDev }}
+
+  - template: .pipelines/deploy.stage.yml
+    parameters:
+      azureSubscription: 'azSubValue'
+      environmentType: ${{ variables.environmentTypeProd }}
+      appName: ${{ variables.appName }}
+      resourceGroupName: resource-group-name
+      dependsOn: deployStage${{ variables.environmentTypeQa }}
