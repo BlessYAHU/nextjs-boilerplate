@@ -1,12 +1,14 @@
 parameters:
+  - name: 'azureSubscription'
+    type: 'string'
   - name: 'type'
     type: string
     values:
       - Dev
       - QA
       - Prod
-  - name: 'azureSubscription'
-    type: 'string'
+  - name: 'appName'
+    type: string
 
 stages:
 - stage: devDeployStage
@@ -22,6 +24,7 @@ stages:
         - script: |
             echo 'webApp deploy staging'
             echo azureSubscription-${{ parameters.azureSubscription }}
+            echo azureSubscription-${{ parameters.appName }}
           displayName: Deploy Staging
 
     - job: smokeTestStaging
