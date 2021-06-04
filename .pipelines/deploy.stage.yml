@@ -31,7 +31,7 @@ stages:
 
     - template: smokeTest.job.yml
       parameters:
-        urls: urlsValue
+        urls: urlsValue-staging
 
     - job: productionSlotJob
       displayName: Production Slot
@@ -41,9 +41,6 @@ stages:
             echo resourceGroupName-${{ parameters.resourceGroupName }}
           displayName: SwapSlots Production
 
-    - job: smokeTestProduction
-      displayName: Production Smoke Test
-      steps:
-        - script: |
-            echo 'smokeTest production'
-          displayName: SmokeTest Production
+    - template: smokeTest.job.yml
+        parameters:
+          urls: urlsValue-prod
