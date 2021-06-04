@@ -14,8 +14,31 @@ stages:
               echo 'buildAppStage'
 
   - stage: devDeployStage
-    displayName: Deploy Dev
+    displayName: Dev
     dependsOn: buildAppStage
+    jobs:
+      - job: productionSlotJob
+        displayName: 'Production Slot'
+        steps:
+          - script: |
+              echo 'download artifact'
+          - script: |
+              echo 'webApp deploy staging'
+          - script: |
+              echo 'smokeTest staging'
+
+      - job: SwapEast
+        displayName: 'Swap East Slot'
+        dependsOn: productionSlotJob
+        steps:
+          - script: |
+              echo 'swapSlots production'
+          - script: |
+              echo 'smokeTest production'
+
+  - stage: qaDeployStage
+    displayName: QA
+    dependsOn: devDeployStage
     jobs:
       - job: productionSlotJob
         displayName: 'Production Slot'
