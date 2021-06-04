@@ -42,5 +42,5 @@ stages:
           displayName: SwapSlots Production
 
     - template: smokeTest.job.yml
-        parameters:
-          urls: urlsValue-prod
+      parameters:
+        urls: urlsValue-prod
