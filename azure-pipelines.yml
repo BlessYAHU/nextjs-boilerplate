@@ -22,8 +22,8 @@ stages:
 #              echo 'buildAppStage'
 #            displayName: 'buildAppStage'
 
-    steps:
-      - template: .pipelines/deployEnvironment.yml
+  - template: .pipelines/deployEnvironment.yml
+
 #  - stage: devDeployStage
 #    displayName: Dev
 #    dependsOn: buildAppStage
