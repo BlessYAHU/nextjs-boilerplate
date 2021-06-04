@@ -29,9 +29,9 @@ stages:
       parameters:
         environmentType: ${{ variables.environmentTypeProd }}
 
-  - stage: deployProd${{ variables.environmentTypeProd }}
+  - stage: deployStage${{ variables.environmentTypeProd }}
     displayName: ${{ variables.environmentTypeProd }}
-    dependsOn: deployStage${{ variables.environmentTypeProd }}
+    dependsOn: deployStage${{ variables.environmentTypeQa }}
     jobs:
     - template: .pipelines/prodSlot.job.yml
       parameters:
