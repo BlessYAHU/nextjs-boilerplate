@@ -8,14 +8,14 @@ parameters:
   - name: dependsOn
     type: string
   - name: disabled
-    type: string
+    type: boolean
     default: false
 
 stages:
 - stage: deployStage${{ parameters.environmentType }}
   displayName: ${{ parameters.environmentType }}
   dependsOn: ${{ parameters.dependsOn }}
-  condition: and(succeeded(), eq('${{ parameters.disabled }}', False))
+  condition: and(succeeded(), eq('${{ parameters.disabled }}', false))
 
   variables:
     - template: config.variables.yml
