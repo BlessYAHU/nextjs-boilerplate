@@ -23,7 +23,7 @@ stages:
 
   - stage: deployStage${{ variables.environmentTypeProd }}
     displayName: ${{ variables.environmentTypeProd }}
-    dependsOn: ${{ parameters.dependsOn }}
+    dependsOn: deployStage${{ variables.environmentTypeQA }}
     jobs:
     - template: stagingSlot.job.yml
       parameters:
