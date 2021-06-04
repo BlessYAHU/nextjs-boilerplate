@@ -1,12 +1,12 @@
 stages:
-- stage: buildAppStage
+- stage: buildStage
   displayName: Build and Test
   jobs:
     - job: buildAppJob
       displayName: Build
       steps:
         - script: |
-            echo 'buildAppStage'
+            echo 'buildStage'
           displayName: Build
         - script: |
             echo 'publishArtifact'

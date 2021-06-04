@@ -6,12 +6,15 @@ variables:
 
 stages:
   - template: .pipelines/build.stage.yml
+
   - template: .pipelines/deploy.stage.yml
     parameters:
       azureSubscription: 'azSubValue'
       environmentType: ${{ variables.devType }}
       appName: ${{ variables.appName }}
       resourceGroupName: resource-group-name
+      dependsOn: buildStage
+
   - template: .pipelines/deploy.stage.yml
     parameters:
       azureSubscription: 'azSubValue'
