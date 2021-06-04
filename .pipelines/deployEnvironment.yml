@@ -1,3 +1,4 @@
+stages:
 - stage: devDeployStage
   displayName: Dev
   dependsOn: buildAppStage
