@@ -1,0 +1,30 @@
+parameters:
+- name: environmentType
+  type: string
+  values:
+  - Dev
+  - QA
+  - Prod
+
+variables:
+- template: config.variables.yml
+
+jobs:
+- deployment: StagingSlotJob
+  displayName: Staging Slot
+  pool:
+    vmImage: 'ubuntu-latest'
+  environment: ${{ parameters.environmentType }}
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - script: |
+            echo 'webApp deploy staging'
+            echo azureSubscription-${{ variables.azureSubscription }}
+            echo appName-${{ variables.appName }}
+            echo disabled-${{ variables.disabled }}
+        - template: smokeTest.step.yml
+          parameters:
+            type: Staging
+            appName: ${{ variables.appName }}
