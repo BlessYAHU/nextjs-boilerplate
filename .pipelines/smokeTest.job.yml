@@ -4,26 +4,26 @@ parameters:
     values:
       - Staging
       - Prod
-  - name: urls
-    type: string
+#  - name: urls
+#    type: string
   - name: appName
     type: string
-  - name: dependsOn
-    type: string
+#  - name: dependsOn
+#    type: string
 
 #variables:
 #  urlBase: '.azurewebsites.net/system/health'
 #  urlStaging: 'https://$(appName)-staging.azurewebsites.net/system/health'
 #  urlProd: 'https://$(appNameValue).azurewebsites.net/system/health'
 
-jobs:
-  - job: smokeTest${{ parameters.type }}
-    displayName: ${{ parameters.type }} Smoke Test
-    dependsOn: ${{ parameters.type }}SlotJob
-    steps:
-      - script: |
-          echo 'smokeTest ${{ parameters.type }}'
-          echo urls-${{ parameters.urls }}
-          echo "urlStaging-'https://$(appName)-staging.azurewebsites.net/system/health'"
-          echo "urlProd-'https://$(appName).azurewebsites.net/system/health'"
-        displayName: SmokeTest
+#jobs:
+#  - job: smokeTest${{ parameters.type }}
+#    displayName: ${{ parameters.type }} Smoke Test
+#    dependsOn: ${{ parameters.type }}SlotJob
+steps:
+  - script: |
+      echo 'smokeTest ${{ parameters.type }}'
+#      echo urls-${{ parameters.urls }}
+      echo "urlStaging-'https://$(appName)-staging.azurewebsites.net/system/health'"
+      echo "urlProd-'https://$(appName).azurewebsites.net/system/health'"
+    displayName: SmokeTest
