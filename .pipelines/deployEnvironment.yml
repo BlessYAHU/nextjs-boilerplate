@@ -1,6 +1,10 @@
+parameters:
+  - name: 'type'
+    type: string
+
 stages:
 - stage: devDeployStage
-  displayName: Dev
+  displayName: $(parameters.type)
   dependsOn: buildAppStage
   jobs:
     - job: productionSlotJob

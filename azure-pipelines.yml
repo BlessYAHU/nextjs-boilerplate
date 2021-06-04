@@ -6,6 +6,8 @@ trigger:
 stages:
   - template: .pipelines/buildAppStage.yml
   - template: .pipelines/deployEnvironment.yml
+    parameters:
+      type: dev
 
 #  - stage: devDeployStage
 #    displayName: Dev
