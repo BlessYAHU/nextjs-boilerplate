@@ -2,13 +2,12 @@ parameters:
 - name: dependsOn
   type: string
 
-variables:
-- template: .pipelines/config.variables.yml
-
 stages:
 - stage: deployProdSlotStaging${{ variables.environmentTypeProd }}
   displayName: ${{ variables.environmentTypeProd }} - Staging
   dependsOn: deployStage${{ variables.environmentTypeQA }}
+  variables:
+  - template: .pipelines/config.variables.yml
   jobs:
   - template: stagingSlot.job.yml
     parameters:
