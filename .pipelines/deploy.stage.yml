@@ -34,9 +34,10 @@ stages:
         appName: ${{ variables.appName }}
         dependsOn: stagingSlotJob
 
-    - job: productionSlotJob
+    - job: prodSlotJob
       displayName: Production Slot
-      dependsOn: smokeTestStaging
+      dependsOn: stagingSlotJob
+      condition: succeeded()
       steps:
         - script: |
             echo 'swapSlots production'
@@ -48,4 +49,4 @@ stages:
         type: Prod
         urls: urlsValue-prod
         appName: ${{ variables.appName }}
-        dependsOn: productionSlotJob
+        dependsOn: prodSlotJob
