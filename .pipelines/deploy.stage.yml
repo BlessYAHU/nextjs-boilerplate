@@ -15,24 +15,44 @@ stages:
   variables:
     - template: config.variables.yml
   jobs:
-    - job: StagingSlotJob
+    - deployment: StagingSlotJob
       displayName: Staging Slot
-      steps:
-        - script: |
-            echo 'download artifact'
-          displayName: Download Artifact
-        - script: |
-            echo 'webApp deploy staging'
-            echo azureSubscription-${{ variables.azureSubscription }}
-            echo appName-${{ variables.appName }}
-          displayName: Deploy Staging
+      pool:
+        vmImage: 'ubuntu-latest'
+      environment: env-${{ parameters.environmentType }}
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - script: |
+                echo 'webApp deploy staging'
+                echo azureSubscription-${{ variables.azureSubscription }}
+                echo appName-${{ variables.appName }}
+                displayName: Deploy Staging
+          on:
+            success:
+              steps:
+              - script: |
+                  echo 'onSuccess ${{ parameters.type }}'
 
-    - template: smokeTest.job.yml
-      parameters:
-        type: Staging
-        urls: urlsValue-staging
-        appName: ${{ variables.appName }}
-        dependsOn: stagingSlotJob
+#    - job: StagingSlotJob
+#      displayName: Staging Slot
+#      steps:
+#        - script: |
+#            echo 'download artifact'
+#          displayName: Download Artifact
+#        - script: |
+#            echo 'webApp deploy staging'
+#            echo azureSubscription-${{ variables.azureSubscription }}
+#            echo appName-${{ variables.appName }}
+#          displayName: Deploy Staging
+#
+#    - template: smokeTest.job.yml
+#      parameters:
+#        type: Staging
+#        urls: urlsValue-staging
+#        appName: ${{ variables.appName }}
+#        dependsOn: stagingSlotJob
 
     - job: ProdSlotJob
       displayName: Production Slot
