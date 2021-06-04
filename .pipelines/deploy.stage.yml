@@ -33,6 +33,26 @@ stages:
                 type: Staging
                 appName: ${{ variables.appName }}
 
+    - deployment: ProdSlotJob
+      displayName: Prod Slot
+      dependsOn: StagingSlotJob
+      pool:
+        vmImage: 'ubuntu-latest'
+      environment: ${{ parameters.environmentType }}
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - script: |
+                echo 'webApp deploy staging'
+                echo azureSubscription-${{ variables.azureSubscription }}
+                echo appName-${{ variables.appName }}
+            - template: smokeTest.job.yml
+              parameters:
+                type: Prod
+                appName: ${{ variables.appName }}
+
+
 #    - job: StagingSlotJob
 #      displayName: Staging Slot
 #      steps:
