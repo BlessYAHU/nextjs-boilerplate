@@ -4,24 +4,7 @@ trigger:
 #variables:
 
 stages:
-  - stage: buildAppStage
-    displayName: Build and Test
-    jobs:
-      - job: buildAppJob
-        displayName: Build
-        steps:
-          - script: |
-              echo 'buildAppStage'
-            displayName: 'buildAppStage'
-
-      - job: testAppJob
-        displayName: Unit Tests
-        dependsOn: buildAppJob
-        steps:
-          - script: |
-              echo 'buildAppStage'
-            displayName: 'buildAppStage'
-
+  - template: .pipelines/buildAppStage.yml
   - template: .pipelines/deployEnvironment.yml
 
 #  - stage: devDeployStage

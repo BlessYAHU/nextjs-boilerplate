@@ -1,0 +1,27 @@
+stages:
+- stage: buildAppStage
+  displayName: Build and Test
+  jobs:
+    - job: buildAppJob
+      displayName: Build
+      steps:
+        - script: |
+            echo 'buildAppStage'
+          displayName: 'buildAppStage'
+        - script: |
+            echo 'publishArtifact'
+          displayName: 'publishArtifact'
+
+    - job: testAppJob
+      displayName: Unit Tests
+      dependsOn: buildAppJob
+      steps:
+        - script: |
+            echo 'runLint'
+          displayName: 'runLint'
+        - script: |
+            echo 'runUnitTests'
+          displayName: 'runUnitTests'
+        - script: |
+            echo 'publishTestCoverage'
+          displayName: 'publishTestCoverage'
