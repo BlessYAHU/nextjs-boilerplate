@@ -2,11 +2,10 @@ parameters:
   - name: urls
     type: string
 
-jobs:
-  - job: smokeTestStaging
-    displayName: Staging Smoke Test
-    steps:
-      - script: |
-          echo 'smokeTest staging'
-          echo urls-${{ urls }}
-        displayName: SmokeTest
+- job: smokeTestStaging
+  displayName: Staging Smoke Test
+  steps:
+    - script: |
+        echo 'smokeTest staging'
+        echo urls-${{ parameters.urls }}
+      displayName: SmokeTest
