@@ -8,13 +8,12 @@ parameters:
   - name: dependsOn
     type: string
 
-variables:
-  - template: config.variables.yml
-
 stages:
 - stage: deployStage${{ parameters.environmentType }}
   displayName: ${{ parameters.environmentType }}
   dependsOn: ${{ parameters.dependsOn }}
+  variables:
+    - template: config.variables.yml
   jobs:
     - job: stagingSlotJob
       displayName: Staging Slot
