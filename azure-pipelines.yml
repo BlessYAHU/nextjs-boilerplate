@@ -9,7 +9,7 @@ stages:
   - template: .pipelines/deploy.stage.yml
     parameters:
       azureSubscription: 'azSubValue'
-      type: Dev
+      environmentType: Dev
       appName: ${{ variables.appName }}
       resourceGroupName: resource-group-name
 

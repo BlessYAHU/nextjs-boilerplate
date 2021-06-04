@@ -1,20 +1,20 @@
 parameters:
-  - name: 'azureSubscription'
+  - name: azureSubscription
     type: string
-  - name: 'type'
+  - name: environmentType
     type: string
     values:
       - Dev
       - QA
       - Prod
-  - name: 'appName'
+  - name: appName
     type: string
   - name: resourceGroupName
     type: string
 
 stages:
 - stage: devDeployStage
-  displayName: ${{ parameters.type }}
+  displayName: ${{ parameters.environmentType }}
   dependsOn: buildAppStage
   jobs:
     - job: stagingSlotJob
