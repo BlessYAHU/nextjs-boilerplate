@@ -21,6 +21,7 @@ stages:
       environmentType: ${{ variables.environmentTypeQa }}
       dependsOn: deployStage${{ variables.environmentTypeDev }}
 
-  - template: .pipelines/deployProd.stage.yml
+  - template: .pipelines/deploySplit.stage.yml
     parameters:
+      environmentType: ${{ variables.environmentTypeProd }}
       dependsOn: deployStage${{ variables.environmentTypeQa }}
