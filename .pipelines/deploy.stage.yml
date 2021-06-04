@@ -28,6 +28,7 @@ stages:
           displayName: Deploy Staging
 
     - template: smokeTest.job.yml
+      dependsOn: stagingSlotJob
       parameters:
         type: Staging
         urls: urlsValue-staging
@@ -35,6 +36,7 @@ stages:
 
     - job: productionSlotJob
       displayName: Production Slot
+      dependsOn: smokeTestStaging
       steps:
         - script: |
             echo 'swapSlots production'
@@ -42,6 +44,7 @@ stages:
           displayName: SwapSlots Production
 
     - template: smokeTest.job.yml
+      dependsOn: productionSlotJob
       parameters:
         type: Prod
         urls: urlsValue-prod
