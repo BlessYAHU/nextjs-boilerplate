@@ -1,7 +1,8 @@
 variables:
   # project configs
   appName: appNameValue
-  devType: Dev
+  resourceGroupName: resource-group-name
+  azureSubscription: azSubValue
 
   # constant configs
   environmentTypeDev: Dev
