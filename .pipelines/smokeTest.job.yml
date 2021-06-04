@@ -10,9 +10,9 @@ parameters:
     type: string
 
 variables:
-  urlBase: '.azurewebsites.net/system/health'
-  urlStaging: 'https://$(appName)-staging$(urlBase)'
-  urlProd: 'https://$(appNameValue)$(urlBase)'
+#  urlBase: '.azurewebsites.net/system/health'
+  urlStaging: 'https://$(appName)-staging.azurewebsites.net/system/health'
+  urlProd: 'https://$(appNameValue).azurewebsites.net/system/health'
 
 jobs:
   - job: smokeTest${{ parameters.type }}
