@@ -16,9 +16,6 @@ stages:
   displayName: ${{ parameters.environmentType }}
   dependsOn: ${{ parameters.dependsOn }}
   condition: and(succeeded(), eq('${{ parameters.disabled }}', false))
-
-  variables:
-    - template: config.variables.yml
   jobs:
     - template: stagingSlot.job.yml
       parameters:
