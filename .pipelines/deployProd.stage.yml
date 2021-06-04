@@ -7,7 +7,7 @@ stages:
   displayName: ${{ variables.environmentTypeProd }} - Staging
   dependsOn: deployStage${{ variables.environmentTypeQA }}
   variables:
-  - template: .pipelines/config.variables.yml
+  - template: config.variables.yml
   jobs:
   - template: stagingSlot.job.yml
     parameters:
