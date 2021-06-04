@@ -19,7 +19,7 @@ parameters:
 jobs:
   - job: smokeTest${{ parameters.type }}
     displayName: ${{ parameters.type }} Smoke Test
-    dependsOn: stagingSlotJob
+    dependsOn: ${{ parameters.type }}SlotJob
     steps:
       - script: |
           echo 'smokeTest ${{ parameters.type }}'

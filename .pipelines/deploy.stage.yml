@@ -15,7 +15,7 @@ stages:
   variables:
     - template: config.variables.yml
   jobs:
-    - job: stagingSlotJob
+    - job: StagingSlotJob
       displayName: Staging Slot
       steps:
         - script: |
@@ -34,7 +34,7 @@ stages:
         appName: ${{ variables.appName }}
         dependsOn: stagingSlotJob
 
-    - job: prodSlotJob
+    - job: ProdSlotJob
       displayName: Production Slot
       dependsOn: smokeTestStaging
       steps:
