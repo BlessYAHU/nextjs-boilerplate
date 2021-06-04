@@ -10,24 +10,24 @@ stages:
   dependsOn: buildAppStage
   jobs:
     - job: stagingSlotJob
-      displayName: 'Staging Slot'
+      displayName: Staging Slot
       steps:
         - script: |
             echo 'download artifact'
-          displayName: 'download artifact'
+          displayName: Download Artifact
         - script: |
             echo 'webApp deploy staging'
             echo azureSubscription-${{ parameters.azureSubscription }}
-          displayName: 'webApp deploy staging'
+          displayName: Deploy Staging
         - script: |
             echo 'smokeTest staging'
-          displayName: 'smokeTest staging'
+          displayName: SmokeTest Staging
     - job: productionSlotJob
-      displayName: productionSlotJob
+      displayName: Production Slot
       steps:
         - script: |
             echo 'swapSlots production'
-          displayName: 'swapSlots production'
+          displayName: SwapSlots Production
         - script: |
             echo 'smokeTest production'
-          displayName: 'smokeTest production'
+          displayName: SmokeTest Production
