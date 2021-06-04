@@ -28,7 +28,6 @@ stages:
                 echo 'webApp deploy staging'
                 echo azureSubscription-${{ variables.azureSubscription }}
                 echo appName-${{ variables.appName }}
-                displayName: Deploy Staging
           on:
             success:
               steps:
