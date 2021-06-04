@@ -19,15 +19,20 @@ stages:
             echo 'webApp deploy staging'
             echo azureSubscription-${{ parameters.azureSubscription }}
           displayName: Deploy Staging
+
+    - job: smokeTestStaging
         - script: |
             echo 'smokeTest staging'
-          displayName: SmokeTest Staging
+          displayName: SmokeTest
+
     - job: productionSlotJob
       displayName: Production Slot
       steps:
         - script: |
             echo 'swapSlots production'
           displayName: SwapSlots Production
+
+    - job: Smoke Test
         - script: |
             echo 'smokeTest production'
           displayName: SmokeTest Production
