@@ -7,7 +7,7 @@ parameters:
   - Prod
 
 variables:
-- template: config.variables.yml
+  - template: config.variables.yml
 
 jobs:
 - deployment: StagingSlotJob
