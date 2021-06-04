@@ -7,7 +7,7 @@ parameters:
   - name: urls
     type: string
 jobs:
-  - job: smokeTestStaging
+  - job: smokeTest${{ parameters.type }}
     displayName: ${{ parameters.type }} Smoke Test
     steps:
       - script: |
