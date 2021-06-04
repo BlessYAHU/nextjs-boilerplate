@@ -7,10 +7,10 @@ stages:
       steps:
         - script: |
             echo 'buildAppStage'
-          displayName: 'buildAppStage'
+          displayName: Build
         - script: |
             echo 'publishArtifact'
-          displayName: 'publishArtifact'
+          displayName: Publish Artifact
 
     - job: testAppJob
       displayName: Unit Tests
@@ -18,10 +18,10 @@ stages:
       steps:
         - script: |
             echo 'runLint'
-          displayName: 'runLint'
+          displayName: Lint Code
         - script: |
             echo 'runUnitTests'
-          displayName: 'runUnitTests'
+          displayName: Unit Tests
         - script: |
             echo 'publishTestCoverage'
-          displayName: 'publishTestCoverage'
+          displayName: Publish Code Coverage
