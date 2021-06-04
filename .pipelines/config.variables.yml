@@ -6,7 +6,7 @@ variables:
 
   # constant helpers
 #  isSourceBranch: ne(variables['Build.SourceBranchName'], 'master')
-  isCI: in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI')
+  isCI: $[in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI')]
 
   # constant configs
   environmentTypeDev: Dev
