@@ -1,6 +1,8 @@
 parameters:
   - name: 'type'
     type: string
+  - name: 'azureSubscription'
+    type: 'string'
 
 stages:
 - stage: devDeployStage
@@ -15,6 +17,7 @@ stages:
           displayName: 'download artifact'
         - script: |
             echo 'webApp deploy staging'
+            echo azureSubscription-${{ parameters.azureSubscription }}
           displayName: 'webApp deploy staging'
         - script: |
             echo 'smokeTest staging'

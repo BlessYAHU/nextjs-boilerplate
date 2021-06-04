@@ -8,6 +8,7 @@ stages:
   - template: .pipelines/deployEnvironment.yml
     parameters:
       type: dev
+      azureSubscription: 'azSubValue'
 
 #  - stage: devDeployStage
 #    displayName: Dev
