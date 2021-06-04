@@ -21,19 +21,18 @@ stages:
       environmentType: ${{ variables.environmentTypeQa }}
       dependsOn: deployStage${{ variables.environmentTypeDev }}
 
-  - stage: deployStage${{ parameters.environmentType }}
-    displayName: ${{ parameters.environmentType }}
+  - stage: deployStage${{ variables.environmentTypeProd }}
+    displayName: ${{ variables.environmentTypeProd }}
     dependsOn: ${{ parameters.dependsOn }}
-    condition: and(succeeded(), eq('${{ parameters.disabled }}', false))
     jobs:
     - template: stagingSlot.job.yml
       parameters:
-        environmentType: ${{ parameters.environmentType }}
+        environmentType: ${{ variables.environmentTypeProd }}
 
-  - stage: deployProd${{ parameters.environmentType }}
-    displayName: ${{ parameters.environmentType }}
-    dependsOn: deployStage${{ parameters.environmentType }}
+  - stage: deployProd${{ variables.environmentTypeProd }}
+    displayName: ${{ variables.environmentTypeProd }}
+    dependsOn: deployStage${{ variables.environmentTypeProd }}
     jobs:
     - template: prodSlot.job.yml
       parameters:
-        environmentType: ${{ parameters.environmentType }}
+        environmentType: ${{ variables.environmentTypeProd }}
