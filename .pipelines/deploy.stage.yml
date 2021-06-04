@@ -36,8 +36,7 @@ stages:
 
     - job: prodSlotJob
       displayName: Production Slot
-      dependsOn: stagingSlotJob
-      condition: succeeded()
+      dependsOn: smokeTestStaging
       steps:
         - script: |
             echo 'swapSlots production'
