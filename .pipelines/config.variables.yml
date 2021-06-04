@@ -6,7 +6,7 @@ variables:
 
   # constant helpers
 #  isCI: ${{ in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}
-  isCI: ${{ true }}  # TODO: unmock
+  isCI: ${{ false }}  # TODO: unmock
 
   # constant configs
   environmentTypeDev: Dev
