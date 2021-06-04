@@ -29,7 +29,7 @@ stages:
             echo appName-${{ parameters.appName }}
           displayName: Deploy Staging
 
-    - template: .pipelines/smokeTest.job.yml
+    - template: smokeTest.job.yml
       parameters:
         urls: urlsValue
 
