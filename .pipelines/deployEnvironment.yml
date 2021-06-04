@@ -1,6 +1,10 @@
 parameters:
   - name: 'type'
     type: string
+    values:
+      - Dev
+      - QA
+      - Prod
   - name: 'azureSubscription'
     type: 'string'
 
