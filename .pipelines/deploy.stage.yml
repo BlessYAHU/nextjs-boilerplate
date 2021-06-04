@@ -7,11 +7,15 @@ parameters:
       - Prod
   - name: dependsOn
     type: string
+  - name: disabled
+    type: boolean
+    default: false
 
 stages:
 - stage: deployStage${{ parameters.environmentType }}
   displayName: ${{ parameters.environmentType }}
   dependsOn: ${{ parameters.dependsOn }}
+  condition: and(succeeded(), not(${{ disabled }}))
   variables:
     - template: config.variables.yml
   jobs:
