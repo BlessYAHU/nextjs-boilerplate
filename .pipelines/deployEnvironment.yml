@@ -9,8 +9,8 @@ stages:
   displayName: ${{ parameters.type }}
   dependsOn: buildAppStage
   jobs:
-    - job: productionSlotJob
-      displayName: 'Production Slot'
+    - job: stagingSlotJob
+      displayName: 'Staging Slot'
       steps:
         - script: |
             echo 'download artifact'
@@ -22,3 +22,12 @@ stages:
         - script: |
             echo 'smokeTest staging'
           displayName: 'smokeTest staging'
+    - job: productionSlotJob
+      displayName: productionSlotJob
+      steps:
+        - script: |
+            echo: 'swapSlots production'
+          displayName: 'swapSlots production'
+        - script: |
+            echo 'smokeTest production'
+          displayName: 'smokeTest production'
