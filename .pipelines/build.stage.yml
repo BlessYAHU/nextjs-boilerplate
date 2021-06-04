@@ -8,7 +8,7 @@ stages:
         - script: |
             echo 'buildStage'
             echo ${{ notIn(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}
-            echo ${{ variables['isCI'] }}
+            echo isCI-${{ variables['isCI'] }}
           displayName: Build
         - script: |
             echo 'publishArtifact'

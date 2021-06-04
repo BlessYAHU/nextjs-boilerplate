@@ -21,7 +21,19 @@ stages:
       environmentType: ${{ variables.environmentTypeQa }}
       dependsOn: deployStage${{ variables.environmentTypeDev }}
 
-  - template: .pipelines/deploy.stage.yml
-    parameters:
-      environmentType: ${{ variables.environmentTypeProd }}
-      dependsOn: deployStage${{ variables.environmentTypeQa }}
+  - stage: deployStage${{ parameters.environmentType }}
+    displayName: ${{ parameters.environmentType }}
+    dependsOn: ${{ parameters.dependsOn }}
+    condition: and(succeeded(), eq('${{ parameters.disabled }}', false))
+    jobs:
+    - template: stagingSlot.job.yml
+      parameters:
+        environmentType: ${{ parameters.environmentType }}
+
+  - stage: deployProd${{ parameters.environmentType }}
+    displayName: ${{ parameters.environmentType }}
+    dependsOn: deployStage${{ parameters.environmentType }}
+    jobs:
+    - template: prodSlot.job.yml
+      parameters:
+        environmentType: ${{ parameters.environmentType }}
