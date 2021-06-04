@@ -7,8 +7,9 @@ stages:
   - template: .pipelines/build.stage.yml
   - template: .pipelines/deploy.stage.yml
     parameters:
-      type: Dev
       azureSubscription: 'azSubValue'
+      type: Dev
+      appName: appNameValue
 
 #  - stage: devDeployStage
 #    displayName: Dev
