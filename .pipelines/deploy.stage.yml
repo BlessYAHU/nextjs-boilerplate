@@ -31,6 +31,7 @@ stages:
 
     - template: smokeTest.job.yml
       parameters:
+        type: Staging
         urls: urlsValue-staging
 
     - job: productionSlotJob
@@ -43,4 +44,5 @@ stages:
 
     - template: smokeTest.job.yml
       parameters:
+        type: Prod
         urls: urlsValue-prod

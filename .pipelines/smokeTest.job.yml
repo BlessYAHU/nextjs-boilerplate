@@ -1,11 +1,16 @@
 parameters:
+  - name: 'type'
+    type: string
+    values:
+      - Staging
+      - Prod
   - name: urls
     type: string
 jobs:
   - job: smokeTestStaging
-    displayName: Staging Smoke Test
+    displayName: ${{ parameters.type }} Smoke Test
     steps:
       - script: |
-          echo 'smokeTest staging'
+          echo 'smokeTest ${{ parameters.type }}'
           echo urls-${{ parameters.urls }}
         displayName: SmokeTest
