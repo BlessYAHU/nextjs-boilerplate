@@ -34,7 +34,7 @@ stages:
                 echo azureSubscription-${{ variables.azureSubscription }}
                 echo appName-${{ variables.appName }}
                 echo disabled-${{ variables.disabled }}
-            - template: smokeTest.job.yml
+            - template: smokeTest.step.yml
               parameters:
                 type: Staging
                 appName: ${{ variables.appName }}
@@ -53,7 +53,7 @@ stages:
                 echo 'webApp deploy staging'
                 echo azureSubscription-${{ variables.azureSubscription }}
                 echo appName-${{ variables.appName }}
-            - template: smokeTest.job.yml
+            - template: smokeTest.step.yml
               parameters:
                 type: Prod
                 appName: ${{ variables.appName }}
@@ -71,7 +71,7 @@ stages:
 #            echo appName-${{ variables.appName }}
 #          displayName: Deploy Staging
 #
-#    - template: smokeTest.job.yml
+#    - template: smokeTest.step.yml
 #      parameters:
 #        type: Staging
 #        urls: urlsValue-staging
@@ -87,7 +87,7 @@ stages:
 #            echo resourceGroupName-${{ variables.resourceGroupName }}
 #          displayName: SwapSlots Production
 #
-#    - template: smokeTest.job.yml
+#    - template: smokeTest.step.yml
 #      parameters:
 #        type: Prod
 #        urls: urlsValue-prod
