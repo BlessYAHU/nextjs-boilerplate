@@ -1,6 +1,6 @@
 parameters:
   - name: urls
-    types: string
+    type: string
 
 jobs:
   - job: smokeTestStaging
