@@ -21,17 +21,17 @@ stages:
       environmentType: ${{ variables.environmentTypeQa }}
       dependsOn: deployStage${{ variables.environmentTypeDev }}
 
-  - stage: deployStage${{ variables.environmentTypeProd }}
-    displayName: ${{ variables.environmentTypeProd }}
+  - stage: deployProdSlotStaging${{ variables.environmentTypeProd }}
+    displayName: ${{ variables.environmentTypeProd }} - Staging
     dependsOn: deployStage${{ variables.environmentTypeQA }}
     jobs:
     - template: .pipelines/stagingSlot.job.yml
       parameters:
         environmentType: ${{ variables.environmentTypeProd }}
 
-  - stage: deployStage${{ variables.environmentTypeProd }}
-    displayName: ${{ variables.environmentTypeProd }}
-    dependsOn: deployStage${{ variables.environmentTypeQa }}
+  - stage: deployProdSlotProd${{ variables.environmentTypeProd }}
+    displayName: ${{ variables.environmentTypeProd }} - Live
+    dependsOn: deployProdSlotStaging${{ variables.environmentTypeProd }}
     jobs:
     - template: .pipelines/prodSlot.job.yml
       parameters:
