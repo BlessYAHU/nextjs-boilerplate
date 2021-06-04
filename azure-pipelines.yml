@@ -4,8 +4,8 @@ trigger:
 #variables:
 
 stages:
-  - template: .pipelines/buildAppStage.yml
-  - template: .pipelines/deployEnvironment.yml
+  - template: .pipelines/build.stage.yml
+  - template: .pipelines/deploy.stage.yml
     parameters:
       type: Dev
       azureSubscription: 'azSubValue'
