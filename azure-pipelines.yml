@@ -14,7 +14,7 @@ stages:
     parameters:
       environmentType: ${{ variables.environmentTypeDev }}
       dependsOn: buildStage
-      disabled: true # ${{ not(variables['isCI']) }}
+      disabled: ${{ not(variables.isCI) }} # true # ${{ not(variables['isCI']) }}
 
   - template: .pipelines/deploy.stage.yml
     parameters:
