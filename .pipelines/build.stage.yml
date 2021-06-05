@@ -4,11 +4,13 @@ stages:
   jobs:
     - job: buildAppJob
       displayName: Build
+      variables:
+      - template: config.variables.yml
       steps:
         - script: |
             echo 'buildStage'
-            echo ${{ notIn(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}
-            echo isCI-${{ variables['isCI'] }}
+            echo isCI-manual - ${{ in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}
+            echo isCI-$(isCi)
           displayName: Build
         - script: |
             echo 'publishArtifact'
