@@ -10,7 +10,7 @@ stages:
         - script: |
             echo 'buildStage'
             echo isCI-manual - ${{ in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}
-            echo isCI-$(isCi)
+            echo isCI-${{ variables.isCI }}
           displayName: Build
         - script: |
             echo 'publishArtifact'
