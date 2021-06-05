@@ -7,6 +7,7 @@ variables:
   # constant helpers
   isCI: ${{ in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}
   urlStaging: https://$(appName).azurewebsites.net/system/health
+  urlProd: https://$(appName).azurewebsites.net/system/health
 
   # constant configs
   environmentTypeDev: Dev

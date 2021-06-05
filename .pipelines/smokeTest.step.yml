@@ -23,7 +23,6 @@ parameters:
 steps:
 - script: |
     echo 'smokeTest ${{ parameters.type }}'
-    echo 'urlStagin $(urlStaging)'
-    echo "urlStaging-'https://$(appName)-staging.azurewebsites.net/system/health'"
-    echo "urlProd-'https://$(appName).azurewebsites.net/system/health'"
+    echo 'urlStaging $(urlStaging)'
+    echo 'urlProd $(urlProd)'
   displayName: SmokeTest
