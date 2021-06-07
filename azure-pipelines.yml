@@ -81,6 +81,8 @@ stages:
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
+    - upload: $(System.DefaultWorkingDirectory)
+      artifact: drop-app
 
 - stage: Deploy
   displayName: Deploy stage
