@@ -58,7 +58,11 @@ stages:
         SourceFolder: $(Build.SourcesDirectory)
         TargetFolder: $(Agent.BuldDirectory)
         Contents: |
-          **/.next/**
+          $(Build.SourcesDirectory)/.next/**
+          **/package*.json
+
+    - upload: $(Agent.BuldDirectory)
+      artifact: drop-lean
 
 
     - script: npm run lint --if-present
