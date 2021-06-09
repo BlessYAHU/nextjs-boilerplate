@@ -59,8 +59,14 @@ stages:
         TargetFolder: $(Agent.BuldDirectory)
         Contents: |
           $(Build.SourcesDirectory)/.next/**
-          **/package*.json
+          $(Build.SourcesDirectory)/package*.json
+          $(Build.SourcesDirectory)/public/**
+          $(Build.SourcesDirectory)/server.js
+          $(Build.SourcesDirectory)/web.config
+          $(Build.SourcesDirectory)/next.config.js
 
+    - script: npm install --production
+      workingDirectory: $(Agent.BuldDirectory)
     - upload: $(Agent.BuldDirectory)
       artifact: drop-lean
 
