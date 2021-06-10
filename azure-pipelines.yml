@@ -54,19 +54,25 @@ stages:
       displayName: 'install & build'
 
     - task: CopyFiles@2
+      displayName: Extract build files
       inputs:
         SourceFolder: $(Build.SourcesDirectory)
         TargetFolder: $(Agent.BuldDirectory)
         Contents: |
           $(Build.SourcesDirectory)/.next/**
+          $(Build.SourcesDirectory)/.npmrc
+          $(Build.SourcesDirectory)/next.config.js
           $(Build.SourcesDirectory)/package*.json
           $(Build.SourcesDirectory)/public/**
           $(Build.SourcesDirectory)/server.js
+          $(Build.SourcesDirectory)/src/**
+          $(Build.SourcesDirectory)/styles/**
           $(Build.SourcesDirectory)/web.config
-          $(Build.SourcesDirectory)/next.config.js
 
     - script: npm install --production
+      displayName: Production npm install
       workingDirectory: $(Agent.BuldDirectory)
+
     - upload: $(Agent.BuldDirectory)
       artifact: drop-lean
 
