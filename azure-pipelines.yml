@@ -73,39 +73,51 @@ stages:
       displayName: Production npm install
       workingDirectory: $(Agent.BuldDirectory)
 
-    - upload: $(Agent.BuldDirectory)
-      artifact: drop-lean
-
-
-    - script: npm run lint --if-present
-      displayName: 'lint'
-
-    - script: npm run test:cover --if-present
-      displayName: 'test coverage'
-
-    - task: PublishTestResults@2
-      displayName: 'Publish test coverage report'
-      condition: succeededOrFailed()
-      inputs:
-        testResultsFiles: 'coverage/jest-junit/junit.xml'
-
-    - task: PublishHtmlReport@1
-      displayName: 'Publish tests html report'
-      condition: succeededOrFailed()
-      inputs:
-        reportDir: 'html-report/report.html'
-
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        rootFolderOrFile: $(Agent.BuldDirectory)
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
+    - upload: $(Agent.BuldDirectory)
+      artifact: drop-lean
+
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
+
+
+#    - script: npm run lint --if-present
+#      displayName: 'lint'
+#
+#    - script: npm run test:cover --if-present
+#      displayName: 'test coverage'
+#
+#    - task: PublishTestResults@2
+#      displayName: 'Publish test coverage report'
+#      condition: succeededOrFailed()
+#      inputs:
+#        testResultsFiles: 'coverage/jest-junit/junit.xml'
+#
+#    - task: PublishHtmlReport@1
+#      displayName: 'Publish tests html report'
+#      condition: succeededOrFailed()
+#      inputs:
+#        reportDir: 'html-report/report.html'
+#
+#    - task: ArchiveFiles@2
+#      displayName: 'Archive files'
+#      inputs:
+#        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+#        includeRootFolder: false
+#        archiveType: zip
+#        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+#        replaceExistingArchive: true
+#
+#    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+#      artifact: drop
 
 - stage: Deploy
   displayName: Deploy stage
