@@ -25,6 +25,7 @@
     "@next/bundle-analyzer": "^10.2.0",
     "cross-env": "^7.0.3",
     "http": "0.0.1-security",
+    "level": "^7.0.0",
     "next": "10.2.0",
     "pascalcase": "^1.0.0",
     "react": "17.0.2",
