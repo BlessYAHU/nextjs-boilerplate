@@ -1,4 +1,6 @@
-import * as level from 'level';
+const level = require('level');
+import { ServerResponse } from 'http';
+// import * as level from 'level';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { fetchPosts, Post } from '../../services/postsService';
@@ -12,9 +14,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   // 1) Create our database, supply location and options.
   //    This will create or open the underlying store.
   const db = level('my-db');
+  let val;
   try {
-    let val;
-    db.get('posts', (err, value) => {
+    db.get('posts', (err: unknown, value: unknown) => {
       if (err) throw new Error('Ooops! ' + err); // likely the key was not found
       val = value;
       // Ta da!
@@ -30,8 +32,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     res.status(200).json(val); //.json();
   } catch (e) {
     // console.log('error ' + JSON.stringify(e));
-    res.status(404).send('error'); //.send(value);//.json();
-  } finally {
-    db.close();
+    res.status(404).json(val);
   }
 };
