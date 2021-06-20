@@ -23,6 +23,7 @@
     "@microsoft/applicationinsights-react-js": "^3.1.2",
     "@microsoft/applicationinsights-web": "^2.6.2",
     "@next/bundle-analyzer": "^10.2.0",
+    "@types/leveldown": "^4.0.2",
     "cross-env": "^7.0.3",
     "http": "0.0.1-security",
     "level": "^7.0.0",
