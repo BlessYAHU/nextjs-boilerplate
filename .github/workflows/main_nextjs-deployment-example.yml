@@ -50,7 +50,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'nextjs-deployment-example'
-        slot-name: 'production'
+        app-name: 'web-5agfnilx5f3ky'
+        # slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_58002cae7850406ebe2c030f28de66d0 }}
         package: .
